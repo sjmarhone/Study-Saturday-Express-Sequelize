@@ -2,6 +2,21 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 const Student = require('./student');
 
-const Test = db.define();
+const Test = db.define('test', {
+  subject:{
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 
-module.exports = Test;
+  grade: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  }
+})
+
+//associations
+Test.belongsTo(Student)
+Student.hasMany(Test)
+
+
+module.exports = Test
